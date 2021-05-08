@@ -15,7 +15,6 @@ C_BASE_FLAGS = [
         '-ferror-limit=10000',
         '-DNDEBUG',
         '-std=c11',
-        '-I/usr/lib/',
         '-I/usr/include/'
         ]
 
@@ -29,9 +28,8 @@ CPP_BASE_FLAGS = [
         '-DNDEBUG',
         '-std=c++17',
         '-xc++',
-        '-I/usr/lib/',
         '-I/usr/include/',
-        '-I/usr/include/c++/10.2.0/'
+        '-I/usr/include/c++/8'
         ]
 
 C_SOURCE_EXTENSIONS = [

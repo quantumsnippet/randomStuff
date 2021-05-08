@@ -14,13 +14,13 @@ ARCHLINUX INSTALL PROCEDURE
 
 3) Update the system clock
 
-    # timedatectl set-ntp true  
+    # timedatectl set-ntp true
 
     We tell our computer to sync the date and time. At this point we do NOT say what timezone we are in.
 
 4) Partition the disks
-    
-    # lsblk 
+
+    # lsblk
 
     Check BEFORE PARTITION correctly.
 
@@ -60,141 +60,141 @@ ARCHLINUX INSTALL PROCEDURE
 8) FSTAB
 
     We generate a fstab (File System Table) file so linux will know what partitions we have like swap, boot and root.
-    
+
     # genfstab -U /mnt >> /mnt/etc/fstab
-    
-    You should have the partitions as you have configured when you open the file with 
+
+    You should have the partitions as you have configured when you open the file with
     # vim /mnt/etc/fstab
-    
+
 9) CHROOT
 
     Moving inside the future linux system and changing elements there.
     # arch-chroot /mnt
-    
+
 10) Time Zone
 
     # ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-    
+
     # hwclock --systohc
-    
+
 11) Localization
 
     vim /etc/locale.gen
-    
+
     Uncomment the language en_IN UTF-8 and save it. Generate the locale.
     # locale-gen
-    
+
     Also set the variable LANG or language to reflect the same choice.
     # echo LANG=en_IN.UTF-8 > /etc/locale.conf
 
 12) Hostname
 
     echo MyHostname > /etc/hostname
-    
+
     # vim /etc/hosts
-    
+
     Type the following in the file and save it.
-    
+
     127.0.0.1   localhost
     ::1         localhost
     127.0.1.1   MyHostname.localdomain MyHostname
-    
+
 13) Network Configuration
 
     # pacman -S networkmanager
     # systemctl enable NetworkManager
-    
+
     NetworkManager is case sensitive. You will get 3 symlink lines as a result.
-    
+
 14) Root Password
 
     # passwd
-    
+
 15) Bootloader
 
     # pacman -S grub efibootmgr os-prober ntfs-3g
     # grub-install --target=x86_64-efi --efi-directory=/boot
     # grub-mkconfig -o /boot/grub/grub.cfg
- 
+
 16) Unmount disks and Reboot
 
     Exit the chroot and unmount all disks and reboot.
-    
-    # exit   
+
+    # exit
     $ umount -a
     $ reboot
-    
+
     Login to the new system with the root account. Username:root and Password: whatever you specified
-    
+
 17) Adding User
-    
+
     Create 'darshan' user with sudo access.
     # useradd darshan
     # passwd darshan
-        
+
     Type the password here. Then you have to run visudo as root to edit the sudoers file
-    
+
     # visudo
-    
+
     Uncomment the wheel group. It is the line which begins with wheel and save it.
-    
+
     %wheel        ALL=(ALL)       ALL
-    
+
     Add 'darshan' to the wheel group user usermod command.
-    
+
     # usermod -aG wheel darshan
 
-    Okay so now test whether you really have sudo power. 
+    Okay so now test whether you really have sudo power.
     17.1) Use the su to switch to the new user account that you created.
             # su darshan
-            
+
     17.2) Use the groups to verify that the user is in the wheel group.
             $ groups
             darshan wheel
-            
+
     17.3) Use the sudo command to run the whoami command.
             $ sudo whoami
             root
-            
+
 18) Include the 'multilib' repository
 
     $ vim /etc/pacman.conf
-    
+
     Uncomment the repository line and save it.
-    
+
     [multilib]
     include = /etc/pacman.d/mirrorlist
-    
+
 19) Update the system and reboot once.
-    
+
 20) X Server, Desktop Environment(DE), Display Manager(DM)
-    
+
     Before installing a DE, you will need to install the X Server first. Once it is completed, install DE.
     $ sudo pacman -S xorg
     $ sudo pacman -S mate mate-extra
-    
+
     You will also need a display manager to log in to your desktop environment. For the ease, you can install LXDM.
     $ sudo pacman -S lxdm
-    
+
     Once installed, you can enable to start each time you reboot your system.
     $ sudo systemctl enable lxdm.service
-    
+
     Reboot your system and you will see the LXDM login screen, select your desktop environment from the list and login.
-            
+
 21) Getting Wi-Fi connection
 
     Broadcom BCM 43142 requires broadcom-wl-dkms package.
     $ sudo pacman -S broadcom-wl-dkms
-       
+
     To load the new module, run the following commands as root:
     # rmmod b43 b43legacy bcm43xx bcma brcm80211 brcmfmac brcmsmac ssb wl
     # modprobe wl
-    
+
     Also, install Network Manager Applet to get the Wifi icon applet.
     $ sudo pacman -S network-manager-applet
-    
+
     And reboot the system to get Wi-Fi.
-    
+
 22) Install AUR helper yay
 
 23) Install pamac-aur, google-chrome, downgrade, mate-tweak, vim-youcompleteme-git and other packages you want from AUR and the repositories.
@@ -215,47 +215,46 @@ ARCHLINUX INSTALL PROCEDURE
         gdb
         geany
         bleachbit
-        ranger  
+        ranger
         git
         curl
         wget
         gvim (for +clipboard support for copy pasting between system clipboard and vim buffers)
         vim-airline
         vim-airline-themes
-        vim-nerdtree	
+        vim-nerdtree
         vim-syntastic
         vim-nerdcommenter
         qbittorrent
         xfce4-terminal
-        gufw
 
 24) Get the Sound working
-        
+
     $ sudo pacman -S pulseaudio pulseaudio-alsa pavucontrol alsa-utils alsa-plugins alsa-lib alsa-firmware gstreamer volumeicon
-    
+
     $ alsamixer
-    
+
     Press M and unmute the channels and keep increasing the volume levels on all channels to your likings. Check the sound systems.
-    
-25) Install tlp 
+
+25) Install tlp
     $ sudo pacman -S tlp
-    
+
     $ sudo tlp-stat
-    
+
     Do the necessary implementations and generate the symlinks and enable the services.
-    
+
 26) Install intel-ucode
 
     $ sudo pacman -S intel-ucode
 
     Regenerate the grub.cfg.
     $ sudo grub-mkconfig -o /boot/grub/grub.cfg
-        
-27) Use all cores for compiling. 
-	
+
+27) Use all cores for compiling.
+
 	Go to /etc/makepkg.conf file.
-	
-	Search for "MAKEFLAGS". Replace the "-j2" with "-j$(nproc)". 
+
+	Search for "MAKEFLAGS". Replace the "-j2" with "-j$(nproc)".
 	This uses all cores when compiling now.
 
 28) Configure the keyboard shortcuts in the DE and change the DE settings.
@@ -267,9 +266,9 @@ ARCHLINUX INSTALL PROCEDURE
         Create a file /etc/pacman.d/hooks/clean_package_cache.hook
 
         $ sudo vim /etc/pacman.d/hooks/clean_package_cache.hook
-        
+
         Add the following lines:
-        
+
                         [Trigger]
                         Operation = Upgrade
                         Operation = Install
@@ -284,7 +283,7 @@ ARCHLINUX INSTALL PROCEDURE
         Now, create a hook to deal with .pacnew files as well.
 
         $ sudo vim /etc/pacman.d/hooks/pacdiff.hook
-        
+
         Add the following lines:
 
                         [Trigger]
@@ -301,19 +300,12 @@ ARCHLINUX INSTALL PROCEDURE
 30) Journal Size Limit
 
         The maximum size of the persistent journal can be controlled by uncommenting and changing the following:
-                
+
                 # vim /etc/systemd/journald.conf
 
                 SystemMaxUse=100M
 
-        Restart the systemd-journald.service after changing this setting to apply the new limit. 
+        Restart the systemd-journald.service after changing this setting to apply the new limit.
         # systemctl restart systemd-journald.service
 
-31) Setup Firewall using gufw
-	
-      $ sudo enable ufw
-	
-      To make sure that the firewall starts every time you reboot the computer
-      $ sudo systemctl enable ufw
-        
-32) Update and reboot.
+31) Update and reboot.
