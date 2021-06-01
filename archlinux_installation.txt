@@ -227,6 +227,7 @@ ARCHLINUX INSTALL PROCEDURE
         vim-nerdcommenter
         qbittorrent
         xfce4-terminal
+        keepassxc
 
 24) Get the Sound working
 
