@@ -204,6 +204,8 @@ ARCHLINUX INSTALL PROCEDURE
         network-manager-applet
         p7zip
         unrar
+        zip
+        unzip
         gvfs
         gvfs-mtp (For Android File Transfer)
         youtube-dl
