@@ -110,10 +110,10 @@ ARCHLINUX INSTALL PROCEDURE
 
     # passwd
 
-15) Bootloader
+15) Boot loader
 
     # pacman -S grub efibootmgr os-prober ntfs-3g
-    # grub-install --target=x86_64-efi --efi-directory=/boot
+    # grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
     # grub-mkconfig -o /boot/grub/grub.cfg
 
 16) Unmount disks and Reboot
@@ -158,16 +158,16 @@ ARCHLINUX INSTALL PROCEDURE
 
 18) Include the 'multilib' repository
 
-    $ vim /etc/pacman.conf
+    $ sudo vim /etc/pacman.conf
 
     Uncomment the repository line and save it.
 
     [multilib]
     include = /etc/pacman.d/mirrorlist
 
-19) Update the system and reboot once.
+19) Update the system.
 
-20) X Server, Desktop Environment(DE), Display Manager(DM)
+20) X Server, Desktop Environment(DE), Login Display Manager(DM)
 
     Before installing a DE, you will need to install the X Server first. Once it is completed, install DE.
     $ sudo pacman -S xorg
@@ -197,7 +197,7 @@ ARCHLINUX INSTALL PROCEDURE
 
 22) Install AUR helper yay
 
-23) Install pamac-aur, google-chrome, downgrade, mate-tweak, vim-youcompleteme-git and other packages you want from AUR and the repositories.
+23) Install pamac-aur, google-chrome, downgrade, mate-tweak and other packages you want from AUR and the repositories.
 
     INSTALLING THESE PACKAGES IS A MUST.
         pacman-contrib
@@ -224,9 +224,7 @@ ARCHLINUX INSTALL PROCEDURE
         gvim (for +clipboard support for copy pasting between system clipboard and vim buffers)
         vim-airline
         vim-airline-themes
-        vim-nerdtree
         vim-syntastic
-        vim-nerdcommenter
         qbittorrent
         xfce4-terminal
         keepassxc
