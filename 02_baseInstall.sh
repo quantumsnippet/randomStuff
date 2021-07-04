@@ -17,13 +17,13 @@ echo arch > /etc/hostname
 cat > /etc/hosts <<EOF
 127.0.0.1   localhost
 ::1         localhost
-127.0.1.1   $hostname.localdomain   $hostname
+127.0.1.1   arch.localdomain	arch
 EOF
 echo "-------------------------------------------------"
 
 
 echo """"""NETWORK CONFIGURATION""""""
-pacman -S networkmanager
+pacman -S networkmanager --noconfirm
 systemctl enable NetworkManager
 echo "-------------------------------------------------"
 
@@ -34,12 +34,18 @@ echo "-------------------------------------------------"
 
 
 echo """"""BOOT LOADER""""""
-pacman -S grub efibootmgr os-prober ntfs-3g intel-ucode
+pacman -S grub efibootmgr os-prober ntfs-3g intel-ucode --noconfirm
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
+echo """"""ENABLING OS_PROBER TO DETECT OTHER OPERATING SYSTEMS""""""
+echo 'GRUB_DISABLE_OS_PROBER=false' > /etc/default/grub
+echo 'GRUB_DEFAULT=saved' > /etc/default/grub
+echo 'GRUB_SAVEDEFAULT=true' > /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 echo "-------------------------------------------------"
 
 
 echo """"""EXIT AND REBOOT""""""
 exit
-reboot
+exit
