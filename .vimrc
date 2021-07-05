@@ -1,4 +1,4 @@
-"""""Updated as of July 3rd, 2021"""""
+"""""Updated as of July 5th, 2021"""""
 
                     """""PLUGINS USING VIM-PLUG
 call plug#begin()
@@ -7,9 +7,7 @@ call plug#begin()
     Plug 'preservim/nerdtree'                                   "NERDTree Plugin
 
     Plug 'preservim/nerdcommenter'                              "NERD Commenter
-
 call plug#end()
-
 
 set exrc
 set secure
@@ -69,6 +67,7 @@ noremap <F4> :set hlsearch! hlsearch?<CR>
 					"""""CODE FOLDING
 set foldenable					        "Enable Code Folding
 set foldlevelstart=10				    "10 ensures that only heavily nested blocks are folded.
+
 "Shortcut for opening/closing folds
 nnoremap <space> za				 
 set foldmethod=indent			        "Tells Vim to fold based on indentation"
