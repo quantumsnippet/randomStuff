@@ -29,7 +29,7 @@ set lazyredraw			                "Don't redraw while executing macros (good perf
 set magic				                "For regular expressions turn magic on  
 set showmatch			                "Show matching brackets when text indicator is over them
 set mat=2						        "How many tenths of a second to blink when matching brackets
-set nowrap 						        "Nowrapping of lines
+set wrap 						        "Wrapping of lines
 set encoding=utf8				        "Set utf8 as standard encoding and en_US as the standard language
 set noerrorbells					    "No annoying sound on errors
 set novisualbell					    "Disable screen flashing on errors
