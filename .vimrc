@@ -1,4 +1,4 @@
-"""""Updated as of July 5th, 2021"""""
+"""""Updated as of July 8th, 2021"""""
 
                     """""PLUGINS USING VIM-PLUG
 call plug#begin()
@@ -7,6 +7,14 @@ call plug#begin()
     Plug 'preservim/nerdtree'                                   "NERDTree Plugin
 
     Plug 'preservim/nerdcommenter'                              "NERD Commenter
+
+    Plug 'vim-airline/vim-airline'                              "Lean & mean status/tabline for Vim
+
+    Plug 'vim-airline/vim-airline-themes'                       "Themes for vim-airline
+
+    Plug 'vim-syntastic/syntastic'                              "Syntax checking plugin for Vim
+
+    Plug 'tpope/vim-fugitive'                                   "Git plugin for Vim
 call plug#end()
 
 set exrc
@@ -70,7 +78,7 @@ set foldlevelstart=10				    "10 ensures that only heavily nested blocks are fol
 
 "Shortcut for opening/closing folds
 nnoremap <space> za				 
-set foldmethod=indent			        "Tells Vim to fold based on indentation"
+set foldmethod=indent			        "Tells Vim to fold based on indentation
 set foldcolumn=1		            	"Add a bit of extra margin to the left
 
 
@@ -100,10 +108,9 @@ nmap <F2> :NERDTreeToggle<CR>
 
 
 					"""""CLIPBOARD SETTINGS FOR COPY PASTE OPERATIONS
+"Make sure to install 'vim-gtk3' package on Debian or 'gvim' package on Arch Linux
 set clipboard=unnamedplus		"Makes all yanking/deleting operations automatically copy to the system clipboard           
 "Copy Paste Shortcuts between the system clipboard and regular vim editor
 vnoremap <C-c> "*y :let @+=@*<CR>		
 map <C-v> "+P
-
-
 
