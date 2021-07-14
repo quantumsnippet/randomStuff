@@ -1,4 +1,4 @@
-"""""Updated as of July 8th, 2021"""""
+"""""Updated as of July 15th, 2021"""""
 
                     """""PLUGINS USING VIM-PLUG
 call plug#begin()
@@ -113,4 +113,10 @@ set clipboard=unnamedplus		"Makes all yanking/deleting operations automatically 
 "Copy Paste Shortcuts between the system clipboard and regular vim editor
 vnoremap <C-c> "*y :let @+=@*<CR>		
 map <C-v> "+P
+					
+
+                    """""YouCompleteMe Config
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_min_num_of_chars_for_completion = 1
 
