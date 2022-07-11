@@ -7,7 +7,7 @@ max-items 500
 reload-threads 100
 cleanup-on-quit yes
 wrap-scroll yes 
-#text-width 80
+text-width 80
 
 #external browser
 browser firefox
