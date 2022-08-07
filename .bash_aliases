@@ -4,4 +4,4 @@ alias upd="sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo 
 alias clean="sudo apt autoclean && sudo apt clean && sudo apt autoremove --purge"
 alias v="vim"
 alias rg="ranger"
-alias nb="newsboat"
+alias n="newsboat"
