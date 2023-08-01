@@ -12,11 +12,7 @@ text-width 80
 #external browser
 browser firefox
 macro , open-in-browser
-macro i set browser "eom %u >/dev/null 2>&1 &"; open-in-browser ; set browser firefox
-macro v set browser "vlc %u >/dev/null 2>&1 &"; open-in-browser ; set browser firefox
-
-#urlscan
-external-url-viewer "urlscan"
+macro v set browser "mpv %u"; open-in-browser ; set browser firefox
 
 #bind keys
 bind-key j down
@@ -58,8 +54,5 @@ highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
-# notify
-notify-program "/usr/bin/notify-send"
-
 # kill files ignore articles marked #shorts to filter out youtube shorts
-ignore-article "*" "title =~ \"#shorts$\""
+#ignore-article "*" "title =~ \"#shorts$\""
